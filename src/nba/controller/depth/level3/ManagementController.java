@@ -5,6 +5,9 @@ package nba.controller.depth.level3;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.service.ManagementService;
+import nba.service.PlayerService;
+import nba.service.TeamService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
@@ -14,6 +17,10 @@ import java.util.List;
 public class ManagementController implements CustomController {
     @Getter
     private final String name;
+    private final PlayerService playerService;
+    private final TeamService teamService;
+    private final ManagementService managementService;
+
 
     @Override
     public String handle() {
@@ -33,5 +40,21 @@ public class ManagementController implements CustomController {
             default:
                 return "management";
         }
+    }
+
+    private String changeHead() {
+        return null;
+    }
+
+    private String sellPlayer() {
+        return null;
+    }
+
+    private String buyPlayer() {
+        return null;
+    }
+
+    private String trade() {
+        return null;
     }
 }

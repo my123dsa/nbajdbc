@@ -4,6 +4,9 @@ package nba.controller.depth.level3;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.domain.Player;
+import nba.service.PlayerService;
+import nba.service.TeamService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
@@ -13,7 +16,8 @@ import java.util.List;
 public class PlayerController implements CustomController {
     @Getter
     private final String name;
-
+    private final PlayerService playerService;
+    private final TeamService teamService;
 
     @Override
     public String handle() {
@@ -30,5 +34,13 @@ public class PlayerController implements CustomController {
                 View.printValidNum();
                 return "player";
         }
+    }
+
+    private String getPlayerStats() {
+        return null;
+    }
+
+    private String getPlayerList() {
+        return null;
     }
 }

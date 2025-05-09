@@ -4,6 +4,7 @@ package nba.controller.depth.level2;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.service.PlayerService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
@@ -11,6 +12,7 @@ import nba.util.View;
 public class PlayerEventController implements CustomController {
     @Getter
     private final String name;
+    private final PlayerService playerService;
 
     @Override
     public String handle() {
@@ -27,6 +29,14 @@ public class PlayerEventController implements CustomController {
                 View.printValidNum();
                 return "playerEvent";
         }
+    }
+
+    private String retirePlayer() {
+        return null;
+    }
+
+    private String createPlayer() {
+        return null;
     }
 
 }

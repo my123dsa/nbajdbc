@@ -3,6 +3,7 @@ package nba.controller.depth.level3;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.service.GameService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class GameController implements CustomController {
     @Getter
     private final String name;
+    private final GameService gameService;
 
     @Override
     public String handle() {
@@ -30,6 +32,18 @@ public class GameController implements CustomController {
                 View.printValidNum();
                 return "game";
         }
+    }
+
+    private String doGame() {
+        return null;
+    }
+
+    private String gameList() {
+        return null;
+    }
+
+    private String rank() {
+        return null;
     }
 
 }
