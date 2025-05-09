@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="HikariCP-5.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/HikariCP-5.0.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/ojdbc11-23.7.0.25.01.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/slf4j-api-2.0.9.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/slf4j-simple-2.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
