@@ -6,14 +6,14 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-public class owner {
+public class Owner {
     private Integer id;
     private String userType;
     private String email;
     private String password;
 
     @Builder
-    public owner(Integer id, String userType, String email, String password) {
+    public Owner(Integer id, String userType, String email, String password) {
         this.id = id;
         this.userType = userType;
         this.email = email;
