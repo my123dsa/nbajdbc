@@ -28,6 +28,22 @@ public class View {
         System.out.println(sb);
     }
 
+    public static void printInitWithControl() {
+        System.out.println("\n=============================");
+        System.out.println("     1. 로그인");
+        System.out.println("     2. 회원가입");
+        System.out.println("=============================");
+        System.out.print("메뉴를 선택하세요: ");
+    }
+
+    public static void printLogin() {
+        System.out.print("아이디,비밀번호를 입력하세요 (예: user1,pass123): ");
+    }
+
+    public static void printRegister() {
+        System.out.print("회원가입 - 아이디,비밀번호를 입력하세요 (예: newuser,pass123): ");
+    }
+
     public static void printEnter(){
         System.out.println("\n=============================");
         System.out.println("     1. 내 구단");
