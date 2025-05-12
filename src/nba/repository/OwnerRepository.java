@@ -3,6 +3,7 @@ package nba.repository;
 import lombok.RequiredArgsConstructor;
 import nba.dto.LoginDTO;
 import nba.dto.OwnerState;
+import nba.dto.RegisterDTO;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -36,9 +37,9 @@ public class OwnerRepository {
         }
     }
 
-    public int register(LoginDTO loginDTO) {
+    public int register(RegisterDTO registerDTO) {
         String getIdSql = "SELECT owner_seq.NEXTVAL FROM dual";
-        String insertSql = "INSERT INTO owner(id, email, password, user_type) VALUES (?, ?, ?, ?)";
+        String insertSql = "INSERT INTO owner(id, email, password, user_type,TEAM_ID) VALUES (?, ?, ?, ?,?)";
 
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
@@ -53,13 +54,15 @@ public class OwnerRepository {
 
             try (PreparedStatement psInsert = conn.prepareStatement(insertSql)) {
                 psInsert.setInt(1, newId);
-                psInsert.setString(2, loginDTO.getEmail());
-                psInsert.setString(3, loginDTO.getPassword());
-                psInsert.setString(4, loginDTO.getUserType());
+                psInsert.setString(2, registerDTO.getEmail());
+                psInsert.setString(3, registerDTO.getPassword());
+                psInsert.setString(4, "User");
+                psInsert.setInt(5, registerDTO.getTeamId());
+
 
                 int result = psInsert.executeUpdate();
 
-                historyLogger.logInsert(conn, "owner", newId, loginDTO.toString());
+                historyLogger.logInsert(conn, "owner", newId, registerDTO.toString());
 
                 conn.commit();
                 return result;
@@ -72,62 +75,3 @@ public class OwnerRepository {
         }
     }
 }
-//
-//    public int register(LoginDTO loginDTO) {
-//        String getIdSql = "SELECT owner_seq.NEXTVAL FROM dual";
-//        String sql = "INSERT INTO owner(id,email, password,USER_TYPE) VALUES(?,?,?,?)";
-//
-//        Connection conn = null;
-//        PreparedStatement ps =null;
-//        PreparedStatement ps2 =null;
-////        CallableStatement cs= null;
-//
-//        try{
-//            conn =dataSource.getConnection();
-//            ps =conn.prepareStatement(sql);
-//            ps2 =conn.prepareStatement(getIdSql);
-////            cs = conn.prepareCall(sql);
-//            conn.setAutoCommit(false);
-//
-//            ResultSet rs = ps2.executeQuery();
-//            int newId = -1;
-//            if (rs.next()) {
-//                newId = rs.getInt(1);
-//            }
-//
-//
-//            ps.setInt(1,newId);
-//            ps.setString(2,loginDTO.getEmail());
-//            ps.setString(3,loginDTO.getPassword());
-//            ps.setString(4,loginDTO.getUserType());
-//
-//
-//            int result =ps.executeUpdate();
-//
-//            historyLogger.logInsert(conn,"owner", newId, loginDTO.toString());
-//
-//            conn.commit();
-//            return result;
-//        }catch (SQLException e){
-//            if (conn != null) {
-//                try {
-//                    conn.rollback();
-//                } catch (SQLException rollbackEx) {
-//                    rollbackEx.printStackTrace(); // 또는 로깅
-//                }
-//            }
-//            throw new RuntimeException(e);
-//        }
-//        finally {
-//            if (ps != null) try { ps.close();
-//
-//            } catch (SQLException ignored) {}
-//            if (conn != null) {
-//                try {
-//                    conn.setAutoCommit(true);
-//                    conn.close();
-//                } catch (SQLException ignored) {}
-//            }
-//        }
-//    }
-//}

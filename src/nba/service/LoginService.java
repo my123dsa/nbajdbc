@@ -19,12 +19,29 @@ public class LoginService {
     }
 
     public boolean register(String beforeParse){
-        LoginDTO loginDTO = loginParse(beforeParse);
-        if(loginDTO == null){
+        RegisterDTO registerDTO = registerParse(beforeParse);
+        if(registerDTO == null){
             return false;
         }
-        System.out.println(loginDTO);
-        return ownerRepository.register(loginDTO) != 0;
+        if(registerDTO.getTeamId()<1 || registerDTO.getTeamId()>4){
+            return false;
+        }
+        System.out.println(registerDTO);
+        return ownerRepository.register(registerDTO) != 0;
+    }
+
+    private RegisterDTO registerParse(String next) {
+        try {
+            String[] tokens = next.split(",");
+            return  RegisterDTO.builder()
+                    .email(tokens[0].trim())
+                    .password(tokens[1].trim())
+                    .teamId(Integer.parseInt(tokens[2].trim()))
+                    .build();
+        }catch (Exception e){
+//            e.printStackTrace();
+            return null;
+        }
     }
 
     private LoginDTO loginParse(String next) {
@@ -33,7 +50,6 @@ public class LoginService {
             return  LoginDTO.builder()
                     .email(tokens[0].trim())
                     .password(tokens[1].trim())
-                    .userType("User")
                     .build();
         }catch (Exception e){
 //            e.printStackTrace();
