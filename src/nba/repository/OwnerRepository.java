@@ -70,8 +70,11 @@ public class OwnerRepository {
                 conn.rollback();
                 throw new RuntimeException("Error inserting owner", e);
             }
+            finally {
+                conn.setAutoCommit(true);
+            }
         } catch (SQLException e) {
-            throw new RuntimeException("Database error during registration", e);
+            throw new RuntimeException("❌ DB 연결 또는 트랜잭션 처리 중 오류", e);
         }
     }
 }
