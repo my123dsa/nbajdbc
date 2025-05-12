@@ -7,9 +7,8 @@ import nba.util.ScanUtil;
 import nba.util.View;
 
 @RequiredArgsConstructor
-@Getter
 public class InitController implements CustomController {
-
+    @Getter
     private final String name;
 
     @Override
