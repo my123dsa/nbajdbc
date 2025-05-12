@@ -3,6 +3,7 @@ package nba.util;
 
 
 import nba.domain.Stats;
+import nba.dto.game.QuarterLog;
 import nba.dto.game.RankDTO;
 import nba.dto.player.PlayerWithStats;
 import nba.dto.team.TeamWithPlayersAndStatsDTO;
@@ -141,14 +142,14 @@ public class View {
 
         System.out.println();
     }
-//
-//    public static void printQuarterScore(List<QuarterLog> quarterLogs) {
-//        for (QuarterLog log : quarterLogs) {
-//            System.out.printf("[%d쿼터] %s %d : %d %s\n",
-//                    log.getQuarter(), log.getTeam1Name(), log.getTeam1Score(), log.getTeam2Score(), log.getTeam2Name());
-//        }
-//    }
-//
+
+    public static void printQuarterScore(List<QuarterLog> quarterLogs) {
+        for (QuarterLog log : quarterLogs) {
+            System.out.printf("[%d쿼터] %s %d : %d %s\n",
+                    log.getQuarter(), log.getTeam1Name(), log.getTeam1Score(), log.getTeam2Score(), log.getTeam2Name());
+        }
+    }
+
 //    public static void printFormat() {
 //        System.out.println("형식을 지켜서 다시 입력하세요, 이전메뉴로 돌아갑니다");
 //    }

@@ -18,6 +18,7 @@ import java.util.List;
 public class TeamRepository {
     private final DataSource dataSource;
     private final PlayerRepository playerRepository;
+    private final HistoryLogger historyLogger;
 
     public TeamWithPlayersAndStatsDTO findTeamWithPlayersById(int teamId) {
         String sql = "SELECT " +
@@ -96,6 +97,38 @@ public class TeamRepository {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void updateAllWinsAndTotalGames(List<TeamWithPlayersAndStatsDTO> teams) {
+        String sql = "UPDATE team SET wins = ?, TOTAL_GAMES = ? WHERE ID = ?";
+        int updatedCount = 0;
+
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement ps = conn.prepareStatement(sql)) {
+                for (TeamWithPlayersAndStatsDTO team : teams) {
+                    ps.setInt(1, team.getWins());
+                    ps.setInt(2, team.getTotalGames());
+                    ps.setInt(3, team.getId());
+                    updatedCount += ps.executeUpdate();
+
+                    historyLogger.logUpdate(conn, "team", team.getId(), team.toString());
+                }
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw new RuntimeException("❌ 업데이트 중 오류 발생", e);
+
+            } finally {
+                conn.setAutoCommit(true); // 커넥션 풀 복구용
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("❌ DB 연결 또는 트랜잭션 처리 중 오류", e);
         }
     }
 }
