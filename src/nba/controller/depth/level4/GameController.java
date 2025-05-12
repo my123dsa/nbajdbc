@@ -1,4 +1,4 @@
-package nba.controller.depth.level3;
+package nba.controller.depth.level4;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,8 +6,6 @@ import nba.controller.CustomController;
 import nba.service.GameService;
 import nba.util.ScanUtil;
 import nba.util.View;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 public class GameController implements CustomController {

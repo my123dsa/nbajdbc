@@ -1,60 +1,43 @@
-package nba.controller.depth.level3;
-
+package nba.controller.depth.level4;
 
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
-import nba.service.ManagementService;
 import nba.service.PlayerService;
 import nba.service.TeamService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
-import java.util.List;
-
 @RequiredArgsConstructor
-public class ManagementController implements CustomController {
+public class PlayerController implements CustomController {
     @Getter
     private final String name;
     private final PlayerService playerService;
     private final TeamService teamService;
-    private final ManagementService managementService;
-
 
     @Override
     public String handle() {
-        View.printManagement();
+        View.printPlayer();
         int next = ScanUtil.readInt();
         switch (next) {
             case 1:
-                return trade();
+                return getPlayerList();
             case 2:
-                return buyPlayer();
-            case 3:
-                return sellPlayer();
-            case 4:
-                return changeHead();
+                return getPlayerStats();
             case 0:
                 return "team";
             default:
-                return "management";
+                View.printValidNum();
+                return "player";
         }
     }
 
-    private String changeHead() {
+    private String getPlayerStats() {
         return null;
     }
 
-    private String sellPlayer() {
-        return null;
-    }
-
-    private String buyPlayer() {
-        return null;
-    }
-
-    private String trade() {
+    private String getPlayerList() {
         return null;
     }
 }

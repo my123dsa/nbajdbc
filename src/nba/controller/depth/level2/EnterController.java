@@ -1,4 +1,4 @@
-package nba.controller.depth.level1;
+package nba.controller.depth.level2;
 
 
 import lombok.Getter;
@@ -8,9 +8,9 @@ import nba.util.ScanUtil;
 import nba.util.View;
 
 @RequiredArgsConstructor
-@Getter
-public class EnterController implements CustomController {
 
+public class EnterController implements CustomController {
+    @Getter
     private final String name;
 
     @Override
