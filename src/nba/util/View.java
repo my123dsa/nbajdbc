@@ -37,7 +37,7 @@ public class View {
     }
 
     public static void printRegister() {
-        System.out.print("회원가입 - 아이디,비밀번호를 입력하세요 (예: newuser,pass123):  ");
+        System.out.print("회원가입 - 아이디,비밀번호, 팀id를 입력하세요 (예: newuser,pass123, 3): ");
     }
 
     public static void printEnter(){
