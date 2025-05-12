@@ -7,7 +7,7 @@ import java.util.List;
 public class View {
     private static StringBuilder sb =new StringBuilder();
 
-    public static void printInit(){
+    public static void printSelectTeam(){
 
         String sb = "===========================\n" +
                 "NBA 게임에 오신 걸 환영합니다\n" +
@@ -33,11 +33,11 @@ public class View {
     }
 
     public static void printLogin() {
-        System.out.print("아이디,비밀번호를 입력하세요 (예: user1,pass123): ");
+        System.out.print("아이디,비밀번호를 입력하세요 (예: user1,pass123): , 가입하려면 reigster를 입력하세요");
     }
 
     public static void printRegister() {
-        System.out.print("회원가입 - 아이디,비밀번호를 입력하세요 (예: newuser,pass123): ");
+        System.out.print("회원가입 - 아이디,비밀번호를 입력하세요 (예: newuser,pass123):  ");
     }
 
     public static void printEnter(){
