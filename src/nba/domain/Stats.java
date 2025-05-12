@@ -21,7 +21,7 @@ public class Stats implements Serializable {
     private Integer point3;
 
     @Builder
-    public Stats(Integer playerId ,Integer shoot, Integer pass, Integer dribble, Integer rebound, Integer block, Integer steal, Integer point3) {
+    public Stats(Integer id,Integer playerId ,Integer shoot, Integer pass, Integer dribble, Integer rebound, Integer block, Integer steal, Integer point3) {
         this.id = id;
         this.playerId = playerId;
         this.shoot = shoot;
