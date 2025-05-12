@@ -24,9 +24,9 @@ public class AppConfig {
 
         OwnerRepository ownerRepository = new OwnerRepository(dataSource, historyLogger);
         PlayerRepository playerRepository = new PlayerRepository(dataSource);
-        TeamRepository teamRepository = new TeamRepository(dataSource, playerRepository);
+        TeamRepository teamRepository = new TeamRepository(dataSource, playerRepository,historyLogger);
         StatsRepository statsRepository = new StatsRepository(dataSource);
-        GameRepository gameRepository = new GameRepository(dataSource);
+        GameRepository gameRepository = new GameRepository(dataSource,historyLogger);
         HeadCoachRepository headCoachRepository = new HeadCoachRepository(dataSource);
 
         PlayerService playerService = new PlayerService(playerRepository, teamRepository, statsRepository);
