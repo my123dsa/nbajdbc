@@ -18,10 +18,10 @@ public class Game implements Serializable {
 
     private Integer team1Score;
     private Integer team2Score;
-    private Integer result;
+    private Boolean result;
 
     @Builder
-    public Game(Integer id,Integer team1, Integer team2, Integer team1Score,Integer team2Score, Integer result) {
+    public Game(Integer id,Integer team1, Integer team2, Integer team1Score,Integer team2Score, Boolean result) {
         this.id = id;
         this.team1 = team1;
         this.team2 = team2;
