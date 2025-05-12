@@ -2,6 +2,10 @@ package nba.util;
 
 
 
+import nba.domain.Stats;
+import nba.dto.PlayerWithStats;
+import nba.dto.TeamWithPlayersAndStatsDTO;
+
 import java.util.List;
 
 public class View {
@@ -106,6 +110,9 @@ public class View {
         System.out.println("=============================");
         System.out.print("항목을 선택하세요");
     }
+    public static void printGetStatsList() {
+        System.out.println("능력치를 알고 싶은 선수의 이름을 입력하세요");
+    }
 //
 //    public static void printCreatePlayer() {
 //        System.out.println("아래 형식대로 쉼표(,)로 구분하여 입력하세요:");
@@ -122,9 +129,7 @@ public class View {
 //        System.out.println("팀 id, 선수 이름");
 //    }
 //
-//    public static void printGetStatsList() {
-//        System.out.println("능력치를 알고 싶은 선수의 이름을 입력하세요");
-//    }
+
 //
 //    public static void printGetRank(List<RankDTO> items) {
 //        System.out.println("📊 현재 구단 순위입니다.\n");
@@ -202,41 +207,41 @@ public class View {
 //        System.out.println(sb.toString());
 //    }
 //
-//    public static void printPlayerList(List<PlayerDetailDTO> playerList) {
-//        if (playerList == null || playerList.isEmpty()) {
-//            System.out.println("출력할 선수 목록이 없습니다.");
-//            return;
-//        }
-//
-//        System.out.printf("%-5s %-20s %-5s %-10s %-8s %-10s %-8s %-5s\n",
-//                "ID", "이름", "나이", "연봉", "신장", "윙스팬", "포지션", "FA");
-//
-//        for (PlayerDetailDTO p : playerList) {
-//            System.out.printf("%-5d %-20s %-5s %-10d %-8d %-10d %-8s %-5s\n",
-//                    p.getId(),
-//                    p.getName(),
-//                    p.getBirth(),
-//                    p.getSalary(),
-//                    p.getHeight(),
-//                    p.getWingSpan(),
-//                    p.getPosition(),
-//                    p.getIsFA() ? "O" : "X");
-//        }
-//    }
-//
-//    public static void printPlayerStats(StatsDetailDTO stats) {
-//        System.out.println("===== 선수 스탯 =====");
-//        System.out.println("ID        : " + stats.getId());
-//        System.out.println("슛        : " + stats.getShoot());
-//        System.out.println("패스       : " + stats.getPass());
-//        System.out.println("드리블     : " + stats.getDribble());
-//        System.out.println("리바운드   : " + stats.getRebound());
-//        System.out.println("블락       : " + stats.getBlock());
-//        System.out.println("스틸       : " + stats.getSteal());
-//        System.out.println("3점슛     : " + stats.getPoint3());
-//        System.out.println("====================");
-//    }
-//
+    public static void printPlayerList(TeamWithPlayersAndStatsDTO team) {
+        if (team.getPlayers() == null || team.getPlayers().isEmpty()) {
+            System.out.println("출력할 선수 목록이 없습니다.");
+            return;
+        }
+
+        System.out.printf("%-5s %-20s %-5s %-10s %-8s %-10s %-8s %-5s\n",
+                "ID", "이름", "나이", "연봉", "신장", "윙스팬", "포지션", "FA");
+
+        for (PlayerWithStats p : team.getPlayers()) {
+            System.out.printf("%-5d %-20s %-5s %-10d %-8d %-10d %-8s %-5s\n",
+                    p.getId(),
+                    p.getName(),
+                    p.getBirth(),
+                    p.getSalary(),
+                    p.getHeight(),
+                    p.getWingSpan(),
+                    p.getPosition(),
+                    p.getIsFA() ? "O" : "X");
+        }
+    }
+
+    public static void printPlayerStats(Stats stats) {
+        System.out.println("===== 선수 스탯 =====");
+        System.out.println("ID        : " + stats.getId());
+        System.out.println("슛        : " + stats.getShoot());
+        System.out.println("패스       : " + stats.getPass());
+        System.out.println("드리블     : " + stats.getDribble());
+        System.out.println("리바운드   : " + stats.getRebound());
+        System.out.println("블락       : " + stats.getBlock());
+        System.out.println("스틸       : " + stats.getSteal());
+        System.out.println("3점슛     : " + stats.getPoint3());
+        System.out.println("====================");
+    }
+
 //    public static void printResult(boolean result) {
 //        if (result) {
 //            System.out.println("성공했습니다");
