@@ -4,6 +4,9 @@ package nba.controller.depth.level4;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.controller.MainController;
+import nba.domain.Stats;
+import nba.dto.TeamWithPlayersAndStatsDTO;
 import nba.service.PlayerService;
 import nba.service.TeamService;
 import nba.util.ScanUtil;
@@ -34,10 +37,18 @@ public class PlayerController implements CustomController {
     }
 
     private String getPlayerStats() {
-        return null;
+        View.printGetStatsList();
+        String playerName = ScanUtil.readLine().trim();
+        Stats stats = playerService.getStats(playerName);
+        if(stats != null)
+            View.printPlayerStats(stats);
+        return "player";
     }
 
     private String getPlayerList() {
-        return null;
+
+        TeamWithPlayersAndStatsDTO playerList = teamService.findTeamWithPlayersById(MainController.getOwnerState().getTeamId());
+        View.printPlayerList(playerList);
+        return "player";
     }
 }
