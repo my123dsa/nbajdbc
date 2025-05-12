@@ -1,66 +1,50 @@
 package nba.config;
 
 
-
 import nba.controller.MainController;
-import nba.controller.depth.level.InitController;
-import nba.controller.depth.level0.LoginController;
-import nba.controller.depth.level0.RegisterController;
-import nba.controller.depth.level1.EnterController;
-import nba.controller.depth.level2.PlayerEventController;
-import nba.controller.depth.level2.TeamController;
-import nba.controller.depth.level3.GameController;
-import nba.controller.depth.level3.ManagementController;
-import nba.controller.depth.level3.PlayerController;
-import nba.domain.Owner;
+import nba.controller.depth.level0.InitController;
+import nba.controller.depth.level1.LoginController;
+import nba.controller.depth.level1.RegisterController;
+import nba.controller.depth.level2.EnterController;
+import nba.controller.depth.level3.PlayerEventController;
+import nba.controller.depth.level3.TeamController;
+import nba.controller.depth.level4.GameController;
+import nba.controller.depth.level4.ManagementController;
+import nba.controller.depth.level4.PlayerController;
 import nba.repository.*;
-import nba.service.GameService;
-import nba.service.ManagementService;
-import nba.service.PlayerService;
-import nba.service.TeamService;
-import nba.util.*;
+import nba.service.*;
+import nba.util.ConnectionFactory;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.sql.DataSource;
 
 public class AppConfig {
     public MainController initMainController() {
-        ConnectionFactory factory= new ConnectionFactory();
-//        Owner owner = createOwner(factory);
+        DataSource dataSource= new ConnectionFactory().getDataSource();
+        HistoryLogger historyLogger= new HistoryLogger();
 
-        GameRepository gameRepository = new GameRepository(factory);
-        HeadCoachRepository headCoachRepository = new HeadCoachRepository(factory);
-        PlayerRepository playerRepository = new PlayerRepository(factory);
-        TeamRepository teamRepository = new TeamRepository(factory,playerRepository);
-        StatsRepository statsRepository = new StatsRepository(factory);
+        OwnerRepository ownerRepository = new OwnerRepository(dataSource, historyLogger);
+        PlayerRepository playerRepository = new PlayerRepository(dataSource);
+        TeamRepository teamRepository = new TeamRepository(dataSource, playerRepository);
+        StatsRepository statsRepository = new StatsRepository(dataSource);
+        GameRepository gameRepository = new GameRepository(dataSource);
+        HeadCoachRepository headCoachRepository = new HeadCoachRepository(dataSource);
 
-        PlayerService playerService = new PlayerService(playerRepository, teamRepository,statsRepository);
+        PlayerService playerService = new PlayerService(playerRepository, teamRepository, statsRepository);
         GameService gameService = new GameService(teamRepository, gameRepository);
         ManagementService managementService = new ManagementService(teamRepository, playerRepository);
         TeamService teamService = new TeamService(teamRepository);
-
-        InitController initController = new InitController("init");
-        LoginController loginController = new LoginController("login");
-        RegisterController registerController = new RegisterController("register");
-        PlayerController playerController = new PlayerController("player", playerService, teamService);
-        ManagementController managementController = new ManagementController("management", playerService, teamService, managementService);
-        GameController gameController = new GameController("game", gameService);
-
-        TeamController teamController = new TeamController("team");
-        PlayerEventController playerEventController = new PlayerEventController("playerEvent", playerService);
-        EnterController enterController = new EnterController("enter");
+        LoginService loginService = new LoginService(ownerRepository);
 
         return new MainController(
-                initController,
-                loginController,
-                registerController,
-                enterController,
-                teamController,
-                playerEventController,
-                playerController,
-                managementController,
-                gameController
+                new InitController("init"),
+                new LoginController("login", loginService),
+                new RegisterController("register", loginService),
+                new EnterController("enter"),
+                new TeamController("team"),
+                new PlayerEventController("playerEvent", playerService),
+                new PlayerController("player", playerService, teamService),
+                new ManagementController("management", playerService, teamService, managementService),
+                new GameController("game", gameService)
         );
     }
 //

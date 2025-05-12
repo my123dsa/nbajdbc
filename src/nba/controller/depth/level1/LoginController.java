@@ -1,4 +1,4 @@
-package nba.controller.depth.level0;
+package nba.controller.depth.level1;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

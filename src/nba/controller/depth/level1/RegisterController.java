@@ -1,4 +1,4 @@
-package nba.controller.depth.level0;
+package nba.controller.depth.level1;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +14,7 @@ public class RegisterController implements CustomController {
     private final LoginService loginService;
     @Override
     public String handle() {
+        View.printSelectTeam();
         View.printRegister();
         String next= ScanUtil.readLine();
         //todo  등록 프로세스
