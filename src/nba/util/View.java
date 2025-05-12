@@ -3,6 +3,7 @@ package nba.util;
 
 
 import nba.domain.Stats;
+import nba.dto.game.GameResultDTO;
 import nba.dto.game.QuarterLog;
 import nba.dto.game.RankDTO;
 import nba.dto.player.PlayerWithStats;
@@ -155,27 +156,25 @@ public class View {
 //    }
 //
 //
-//    public static void printGetGameList(List<GameDetailDTO> gameList) {
-//        System.out.println("📋 경기 기록");
-//        for (GameDetailDTO game : gameList) {
-//            String team1Name = game.getTeam1().getName();
-//            String team2Name = game.getTeam2().getName();
-//            int team1Score = game.getTeam1Score();
-//            int team2Score = game.getTeam2Score();
-//            String result;
-//
-//            if (game.getResult() == 1) {
-//                result = team1Name + " 승";
-//            } else if (game.getResult() == -1) {
-//                result = team2Name + " 승";
-//            } else {
-//                result = "무승부";
-//            }
-//
-//            System.out.printf("%s (%d) vs %s (%d) → 결과: %s\n", team1Name, team1Score, team2Name, team2Score, result);
-//        }
-//        System.out.println();
-//    }
+    public static void printGetGameList(List<GameResultDTO> gameList) {
+        System.out.println("📋 경기 기록");
+        for (GameResultDTO game : gameList) {
+            String team1Name = game.getTeamName1();
+            String team2Name = game.getTeamName2();
+            int team1Score = game.getTeam1Score();
+            int team2Score = game.getTeam2Score();
+            String result;
+
+            if (game.getResult()) {
+                result = team1Name + " 승";
+            } else{
+                result = team2Name + " 승";
+            }
+
+            System.out.printf("%s (%d) vs %s (%d) → 결과: %s\n", team1Name, team1Score, team2Name, team2Score, result);
+        }
+        System.out.println();
+    }
 //
 //    public static void printTradeTeamName() {
 //        sb = new StringBuilder();

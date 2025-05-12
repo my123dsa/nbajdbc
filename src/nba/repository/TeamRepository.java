@@ -102,7 +102,6 @@ public class TeamRepository {
 
     public void updateAllWinsAndTotalGames(List<TeamWithPlayersAndStatsDTO> teams) {
         String sql = "UPDATE team SET wins = ?, TOTAL_GAMES = ? WHERE ID = ?";
-        int updatedCount = 0;
 
         try (Connection conn = dataSource.getConnection()) {
             conn.setAutoCommit(false);
@@ -112,7 +111,7 @@ public class TeamRepository {
                     ps.setInt(1, team.getWins());
                     ps.setInt(2, team.getTotalGames());
                     ps.setInt(3, team.getId());
-                    updatedCount += ps.executeUpdate();
+                    ps.executeUpdate();
 
                     historyLogger.logUpdate(conn, "team", team.getId(), team.toString());
                 }

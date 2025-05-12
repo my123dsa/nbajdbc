@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import nba.controller.MainController;
 import nba.domain.Game;
 import nba.domain.Team;
+import nba.dto.game.GameResultDTO;
 import nba.dto.game.QuarterLog;
 import nba.dto.game.RankDTO;
 import nba.dto.player.PlayerWithStats;
@@ -153,5 +154,9 @@ public class GameService {
         }
         team1.setTotalGames(team1.getTotalGames() + 1);
         team2.setTotalGames(team2.getTotalGames() + 1);
+    }
+
+    public List<GameResultDTO> getGameList(){
+        return gameRepository.findByTeamId(MainController.getOwnerState().getTeamId());
     }
 }

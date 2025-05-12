@@ -3,6 +3,7 @@ package nba.controller.depth.level4;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.dto.game.GameResultDTO;
 import nba.dto.game.QuarterLog;
 import nba.dto.game.RankDTO;
 import nba.service.GameService;
@@ -43,7 +44,9 @@ public class GameController implements CustomController {
     }
 
     private String gameList() {
-        return null;
+        List<GameResultDTO> gameList = gameService.getGameList();
+        View.printGetGameList(gameList);
+        return "game";
     }
 
     private String rank() {
