@@ -13,7 +13,7 @@ public class Team implements Serializable {
     private String name;
     private Long money;
     private Integer wins;
-    private Integer totalGame;
+    private Integer totalGames;
 
     @Builder
     public Team(Integer id,String name, Long money, Integer wins, Integer totalGames) {
@@ -21,6 +21,6 @@ public class Team implements Serializable {
         this.name = name;
         this.money = money;
         this.wins = wins;
-        this.totalGame = totalGames;
+        this.totalGames = totalGames;
     }
 }
