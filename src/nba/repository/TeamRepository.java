@@ -1,6 +1,7 @@
 package nba.repository;
 
 import lombok.RequiredArgsConstructor;
+import nba.domain.Team;
 import nba.dto.player.PlayerWithStats;
 import nba.dto.team.TeamWithPlayersAndStatsDTO;
 
@@ -36,7 +37,7 @@ public class TeamRepository {
             List<PlayerWithStats> players = new ArrayList<>();
 
             while (rs.next()) {
-                if(team == null) {
+                if (team == null) {
                     System.out.println("팀 있습니다");
                     team = TeamWithPlayersAndStatsDTO.builder()
                             .id(rs.getInt("team_id"))
@@ -48,7 +49,7 @@ public class TeamRepository {
                             .build();
                 }
 
-                PlayerWithStats player=  PlayerWithStats.builder()
+                PlayerWithStats player = PlayerWithStats.builder()
                         .id(rs.getInt("player_id"))
                         .name(rs.getString("player_name"))
                         .birth(rs.getDate("birth").toLocalDate())
@@ -70,8 +71,31 @@ public class TeamRepository {
 
             return team;
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public List<Team> findAllWithRankAndName() {
+        String sql = "select * from team order by WINS desc";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            List<Team> teams = new ArrayList<>();
+            while (rs.next()) {
+                Team team = Team.builder()
+                        .id(rs.getInt("id"))
+                        .name(rs.getString("name"))
+                        .money(rs.getLong("money"))
+                        .wins(rs.getInt("wins"))
+                        .totalGames(rs.getInt("total_games"))
+                        .build();
+                teams.add(team);
+            }
+            return teams;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

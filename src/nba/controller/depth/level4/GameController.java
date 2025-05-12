@@ -3,6 +3,7 @@ package nba.controller.depth.level4;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
+import nba.dto.game.RankDTO;
 import nba.service.GameService;
 import nba.util.ScanUtil;
 import nba.util.View;

@@ -3,8 +3,11 @@ package nba.util;
 
 
 import nba.domain.Stats;
+import nba.dto.game.RankDTO;
 import nba.dto.player.PlayerWithStats;
 import nba.dto.team.TeamWithPlayersAndStatsDTO;
+
+import java.util.List;
 
 public class View {
     private static StringBuilder sb =new StringBuilder();
@@ -129,32 +132,15 @@ public class View {
 //
 
 //
-//    public static void printGetRank(List<RankDTO> items) {
-//        System.out.println("📊 현재 구단 순위입니다.\n");
-//
-//        int rank = 1;
-//        int prevScore = -1;  // 이전 팀의 점수
-//        int rankForTie = 1;  // 동점 순위를 위한 변수
-//
-//        for (int i = 0; i < items.size(); i++) {
-//            String name = items.get(i).getName();
-//            int score = items.get(i).getWins();
-//
-//            // 동점일 경우
-//            if (score == prevScore) {
-//                System.out.printf("%d위 (공동) - %s (점수: %d)\n", rankForTie, name, score);
-//            } else {
-//                // 동점이 아니면 순위 갱신
-//                rankForTie = rank;
-//                System.out.printf("%d위 - %s (점수: %d)\n", rankForTie, name, score);
-//            }
-//
-//            prevScore = score;  // 현재 점수를 이전 점수로 설정
-//            rank++;  // 순위 증가
-//        }
-//
-//        System.out.println();
-//    }
+    public static void printGetRank(List<RankDTO> items) {
+        System.out.println("📊 현재 구단 순위입니다.\n");
+
+        for( RankDTO item : items ) {
+            System.out.printf("%d위 - %s (점수: %d)\n", item.getRank(), item.getName(), item.getWins());
+        }
+
+        System.out.println();
+    }
 //
 //    public static void printQuarterScore(List<QuarterLog> quarterLogs) {
 //        for (QuarterLog log : quarterLogs) {
