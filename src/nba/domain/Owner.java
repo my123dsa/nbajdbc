@@ -8,13 +8,15 @@ import lombok.*;
 @ToString
 public class Owner {
     private Integer id;
+    private Integer teamId;
     private String userType;
     private String email;
     private String password;
 
     @Builder
-    public Owner(Integer id, String userType, String email, String password) {
+    public Owner(Integer id, Integer teamId, String userType, String email, String password) {
         this.id = id;
+        this.teamId = teamId;
         this.userType = userType;
         this.email = email;
         this.password = password;
