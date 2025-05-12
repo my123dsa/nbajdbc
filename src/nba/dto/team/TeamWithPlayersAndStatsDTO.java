@@ -1,9 +1,10 @@
-package nba.dto;
+package nba.dto.team;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nba.dto.player.PlayerWithStats;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package nba.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import nba.dto.OwnerState;
+import nba.dto.owner.OwnerState;
 
 import java.util.HashMap;
 import java.util.Map;

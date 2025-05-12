@@ -3,10 +3,8 @@ package nba.util;
 
 
 import nba.domain.Stats;
-import nba.dto.PlayerWithStats;
-import nba.dto.TeamWithPlayersAndStatsDTO;
-
-import java.util.List;
+import nba.dto.player.PlayerWithStats;
+import nba.dto.team.TeamWithPlayersAndStatsDTO;
 
 public class View {
     private static StringBuilder sb =new StringBuilder();

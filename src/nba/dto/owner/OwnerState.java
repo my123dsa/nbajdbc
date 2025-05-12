@@ -1,4 +1,4 @@
-package nba.dto;
+package nba.dto.owner;
 
 import lombok.*;
 

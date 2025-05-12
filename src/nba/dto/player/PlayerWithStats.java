@@ -1,4 +1,4 @@
-package nba.dto;
+package nba.dto.player;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

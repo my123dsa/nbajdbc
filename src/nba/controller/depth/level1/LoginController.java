@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
 import nba.controller.MainController;
-import nba.dto.OwnerState;
+import nba.dto.owner.OwnerState;
 import nba.service.LoginService;
 import nba.util.ScanUtil;
 import nba.util.View;

@@ -7,6 +7,8 @@ import nba.service.GameService;
 import nba.util.ScanUtil;
 import nba.util.View;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class GameController implements CustomController {
     @Getter
@@ -41,7 +43,8 @@ public class GameController implements CustomController {
     }
 
     private String rank() {
-        return null;
+        List<RankDTO> teams = gameService.getRank();
+        View.printGetRank(teams);
+        return "game";
     }
-
 }

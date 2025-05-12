@@ -1,9 +1,9 @@
 package nba.service;
 
 import lombok.RequiredArgsConstructor;
-import nba.dto.LoginDTO;
-import nba.dto.OwnerState;
-import nba.dto.RegisterDTO;
+import nba.dto.owner.LoginDTO;
+import nba.dto.owner.OwnerState;
+import nba.dto.owner.RegisterDTO;
 import nba.repository.OwnerRepository;
 
 import java.util.Optional;

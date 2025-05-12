@@ -2,7 +2,7 @@ package nba.service;
 
 
 import lombok.RequiredArgsConstructor;
-import nba.dto.TeamWithPlayersAndStatsDTO;
+import nba.dto.team.TeamWithPlayersAndStatsDTO;
 import nba.repository.TeamRepository;
 
 @RequiredArgsConstructor

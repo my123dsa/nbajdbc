@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import nba.controller.CustomController;
 import nba.controller.MainController;
 import nba.domain.Stats;
-import nba.dto.TeamWithPlayersAndStatsDTO;
+import nba.dto.team.TeamWithPlayersAndStatsDTO;
 import nba.service.PlayerService;
 import nba.service.TeamService;
 import nba.util.ScanUtil;

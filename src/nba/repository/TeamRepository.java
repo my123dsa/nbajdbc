@@ -1,12 +1,10 @@
 package nba.repository;
 
 import lombok.RequiredArgsConstructor;
-import nba.dto.PlayerWithStats;
-import nba.dto.TeamWithPlayersAndStatsDTO;
-import nba.util.ConnectionFactory;
+import nba.dto.player.PlayerWithStats;
+import nba.dto.team.TeamWithPlayersAndStatsDTO;
 
 import javax.sql.DataSource;
-import java.nio.channels.ScatteringByteChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
